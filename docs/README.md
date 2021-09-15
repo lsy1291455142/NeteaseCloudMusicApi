@@ -426,11 +426,13 @@ $ sudo docker run -d -p 3000:3000 netease-music-api
 **可选参数 :**   
 `countrycode`: 国家码，用于国外手机号登录，例如美国传入：`1`
 
-`md5_password`: md5加密后的密码,传入后 `password` 将失效  
+`md5_password`: md5加密后的密码,传入后 `password` 参数将失效  
+
+`captcha`: 验证码,使用 [`/captcha/sent`](#发送验证码)接口传入手机号获取验证码,调用此接口传入验证码,可使用验证码登录,传入后 `password` 参数将失效
 
 **接口地址 :** `/login/cellphone`
 
-**调用例子 :** `/login/cellphone?phone=xxx&password=yyy` `/login/cellphone?phone=xxx&md5_password=yyy`
+**调用例子 :** `/login/cellphone?phone=xxx&password=yyy` `/login/cellphone?phone=xxx&md5_password=yyy` `/login/cellphone?phone=xxx&captcha=1234`
 
 #### 2. 邮箱登录
 
@@ -3483,6 +3485,27 @@ type='1009' 获取其 id, 如`/search?keywords= 代码时间 &type=1009`
 **接口地址 :** `/musician/sign`
 
 **调用例子 :** `/musician/sign`
+
+### 歌曲相关视频
+
+说明： 可以调用此接口获取歌曲相关视频 (区别于 MV)， 有些歌曲没有 MV 但是有用户上传的与此歌曲相关的 Mlog。 此功能仅在 网易云音乐 APP上存在。
+
+请注意：此接口偶尔会在相关视频后返回不相关视频，请合理使用。 
+
+**必选参数 :** `songid` : 歌曲ID
+
+**可选参数 :** `mvid` : 如果定义，此 mvid 对应的 MV 将会作为第一个返回。
+`limit` : 取出的 Mlog 数量, 不包含第一个 mvid
+
+**接口地址 :** `/mlog/music/rcmd`
+
+### 公开隐私歌单
+
+说明: 可以调用此接口将当前用户的隐私歌单公开。
+
+**必选参数 :** `id` : 歌单ID
+
+**接口地址 :** `/playlist/privacy`
 
 ## 离线访问此文档
 

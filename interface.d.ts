@@ -694,6 +694,14 @@ export function login_cellphone(
   } & RequestBaseConfig,
 ): Promise<Response>
 
+export function login_cellphone(
+  params: {
+    phone: number | string
+    countrycode?: number | string
+    captcha: number | string
+  } & RequestBaseConfig,
+): Promise<Response>
+
 export function login_refresh(params: RequestBaseConfig): Promise<Response>
 
 export function login_status(params: RequestBaseConfig): Promise<Response>
@@ -1367,7 +1375,14 @@ export function artist_detail(
   } & RequestBaseConfig,
 ): Promise<Response>
 
-export function cloud(params: RequestBaseConfig): Promise<Response>
+export function cloud(
+  params: {
+    songFile: {
+      name: string
+      data: Buffer
+    }
+  } & RequestBaseConfig,
+): Promise<Response>
 
 export function topic_detail(
   params: {
